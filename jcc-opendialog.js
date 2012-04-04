@@ -41,7 +41,7 @@
         var d=document.createElement('div');
         $(d).html(defaults.dialogtext)
                 .append('<div id="'+defaults.messageid+'"></div>')
-                .attr('id',defaults.dialog.id)
+                .attr('id',defaults.dialogid)
                 .attr('title', defaults.dialogtitle);
                 $('body').append($(d));     
         $(defaults.messageid).html(defaults.dialogtext);
