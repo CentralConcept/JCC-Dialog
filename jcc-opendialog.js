@@ -119,7 +119,7 @@
                     if (defaults.method == 'link'){
                         normal_dialog();
                     }
-                    $('#dialog').dialog('open');
+                    $('#'+defaults.dialogid).dialog('open');
                     return false;
                 })
             }
