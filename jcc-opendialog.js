@@ -10,16 +10,18 @@
 
     var pluginName = 'open_dialog',
         defaults = {
-            href        : $(this).attr("href"),
-            method	: 'link',
+            href		: '',
+            method		: 'link',
             dataType	: 'script',
             response	: '',
             ajaxtype	: 'GET',
-            dialogtitle : $(this).attr("title"),
-            dialogtext  : $(this).attr("rel"),
+            dialogtitle : 'title',
+            dialogtext  : 'text',
             dialogclass : 'message error',
             dialogheight: 220,
             dialogwidth : 400,
+            dialogid    : 'dialog',
+            messageid   : 'dialogchange',
             modal       : true
         };
 
@@ -38,11 +40,11 @@
     var creatediv = function(){
         var d=document.createElement('div');
         $(d).html(defaults.dialogtext)
-                .append('<div id="dialogchange"></div>')
-                .attr('id','dialog')
+                .append('<div id="'+defaults.messageid+'"></div>')
+                .attr('id',defaults.dialog.id)
                 .attr('title', defaults.dialogtitle);
                 $('body').append($(d));     
-        $('#dialog_change').html(defaults.dialogtext);
+        $(defaults.messageid).html(defaults.dialogtext);
         jQuery(d).dialog({
                 bgiframe: true, 
                 autoOpen: false, 
@@ -65,8 +67,15 @@
                 dataType: defaults.dataType,
                 success: function(data) {
                     $$.dialog("close"); 
-                    if(jQuery().jGrowl && defaults.response != ''){
-                        jQuery.jGrowl(defaults.response);
+                    if(jQuery().jGrowl){
+                        if (defaults.response!=''){
+                            jQuery.jGrowl(defaults.response);
+                        }
+                    }
+                    else{
+                        if (defaults.response!=''){
+                           alert(defaults.response);
+                        }
                     }
                 }
             });
@@ -91,13 +100,16 @@
                 $(this).live('click',function(event){
                     event.preventDefault();
                     button = $(this);
-                    if (button.attr('rel')!= null || button.attr('rel')!=''){
+                    if (defaults.dialogtext!='' 
+                        && (button.attr('rel')!= null && button.attr('rel')!='')){
                         defaults.dialogtext = button.attr('rel');
                     }
-                    if (button.attr('href')!= null || button.attr('href')!=''){
+                    if (defaults.href != '' 
+                        && (button.attr('href')!= null && button.attr('href')!='')){
                         defaults.href = button.attr('href');
                     }
-                    if (button.attr('title')!= null || button.attr('title')!=''){
+                    if (defaults.dialogtitle != '' 
+                        && (button.attr('title')!= null && button.attr('title')!='')){
                         defaults.dialogtitle = button.attr('title');
                     }
                     creatediv();
