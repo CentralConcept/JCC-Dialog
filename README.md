@@ -37,5 +37,5 @@ $(document).ready(function(){
 	If you want to show a message after the ajax dialog request is completed. if you have jGrowl it will be used
 
 
-* HTML:
-	`<a href="dialog.html" class="dialog" rel="dialog text" title="dialog title">opendialog</a>`
+* HTML:  
+`<a href="dialog.html" class="dialog" rel="dialog text" title="dialog title">opendialog</a>`
