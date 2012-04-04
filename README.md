@@ -1,5 +1,5 @@
 #dynamic jQueryUI dialog
-
+jQuery and jQueryUI is needed
 ##Usage:
 
 * javascript:
