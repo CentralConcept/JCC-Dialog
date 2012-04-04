@@ -23,10 +23,10 @@ $(document).ready(function(){
 })
 </pre>
 
-	* method
-	choose if you just want to follow a link ('link') or to fire a ajax ('ajax') request
-	* dataType (taken von api.jquery.com):
-	The type of data that you're expecting back from the server. If none is specified, jQuery will try to infer it based on the MIME type of the response (an XML MIME type will yield XML, in 1.4 JSON will yield a JavaScript object, in 1.4 script will execute the script, and anything else will be returned as a string). The available types (and the result passed as the first argument to your success callback) are:  
+	* method:  
+		choose if you just want to follow a link ('link') or to fire a ajax ('ajax') request
+	* dataType (taken von api.jquery.com):  
+		The type of data that you're expecting back from the server. If none is specified, jQuery will try to infer it based on the MIME type of the response (an XML MIME type will yield XML, in 1.4 JSON will yield a JavaScript object, in 1.4 script will execute the script, and anything else will be returned as a string). The available types (and the result passed as the first argument to your success callback) are:  
 "xml": Returns a XML document that can be processed via jQuery.  
 "html": Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.  
 "script": Evaluates the response as JavaScript and returns it as plain text. Disables caching by appending a query string parameter, "_=[TIMESTAMP]", to the URL unless the cache option is set to true. Note: This will turn POSTs into GETs for remote-domain requests  
