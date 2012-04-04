@@ -10,8 +10,8 @@
 
     var pluginName = 'open_dialog',
         defaults = {
-            href		: '',
-            method		: 'link',
+            href	: '',
+            method	: 'link',
             dataType	: 'script',
             response	: '',
             ajaxtype	: 'GET',
