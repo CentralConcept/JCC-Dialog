@@ -2,7 +2,7 @@
  * Project: jcc confirm Dialog
  * Description: dynamic diloag. extends jqueryui dialog()
  * Author: Martin von Loh 
- * Version: 1.2
+ * Version: 1.2.1
  * License: GPLv3
  */
 
@@ -10,7 +10,7 @@
 
     var pluginName = 'open_dialog',
         defaults = {
-            href	: '',
+            href        : '',
             method	: 'link',
             dataType	: 'script',
             response	: '',
@@ -27,7 +27,7 @@
 
     function Plugin( element, options ) {
         this.element = element;
-        this.options = $.extend( {}, defaults, options) ;
+        this.options = jQuery.extend( {}, defaults, options) ;
         this._defaults = defaults;
         this._name = pluginName;
         defaults = this.options;
@@ -39,12 +39,12 @@
     
     var creatediv = function(){
         var d=document.createElement('div');
-        $(d).html(defaults.dialogtext)
+        jQuery(d).html(defaults.dialogtext)
                 .append('<div id="'+defaults.messageid+'"></div>')
                 .attr('id',defaults.dialogid)
                 .attr('title', defaults.dialogtitle);
-                $('body').append($(d));     
-        $(defaults.messageid).html(defaults.dialogtext);
+                jQuery('body').append(jQuery(d));     
+        jQuery(defaults.messageid).html(defaults.dialogtext);
         jQuery(d).dialog({
                 bgiframe: true, 
                 autoOpen: false, 
@@ -53,15 +53,15 @@
                 modal: defaults.modal, 
                 dialogClass: defaults.dialogclass, 
                 close:function(){
-                        $(d).remove();
+                        jQuery(d).remove();
                 }
         });
     };
     
     var ajax_dialog = function(){
-        $('#dialog').dialog( "option", "buttons", { "Ok": function() { 
-            $$ = $(this);
-            $.ajax({
+        jQuery('#dialog').dialog( "option", "buttons", { "Ok": function() { 
+            $$ = jQuery(this);
+            jQuery.ajax({
                 type: defaults.ajaxtype,
                 url: defaults.href,
                 dataType: defaults.dataType,
@@ -80,32 +80,32 @@
                 }
             });
         }, "Abbrechen": function() {
-                        $(this).dialog("close"); 
+                        jQuery(this).dialog("close"); 
             } } );
     };
     
     var normal_dialog = function(){
-        $('#dialog').dialog("option", "buttons", { "Ok": function() { 
+        jQuery('#dialog').dialog("option", "buttons", { "Ok": function() { 
                 document.location.href="" + defaults.href ; 
         }, "Abbrechen": function() {
-                    $(this).dialog("close"); 	 
+                    jQuery(this).dialog("close"); 	 
         } } );
 		
     }
 
-    $.fn[pluginName] = function ( options ) {
+    jQuery.fn[pluginName] = function ( options ) {
         return this.each(function () {
-            if (!$.data(this, 'plugin_' + pluginName)) {
-                $.data(this, 'plugin_' + pluginName, new Plugin( this, options ));
-                $(this).live('click',function(event){
+            if (!jQuery.data(this, 'plugin_' + pluginName)) {
+                jQuery.data(this, 'plugin_' + pluginName, new Plugin( this, options ));
+                jQuery(this).live('click',function(event){
                     event.preventDefault();
-                    button = $(this);
+                    button = jQuery(this);
                     if (defaults.dialogtext!='' 
                         && (button.attr('rel')!= null && button.attr('rel')!='')){
                         defaults.dialogtext = button.attr('rel');
                     }
                     if (defaults.href != '' 
-                        && (button.attr('href')!= null && button.attr('href')!='')){
+                        || (button.attr('href')!= null && button.attr('href')!='')){
                         defaults.href = button.attr('href');
                     }
                     if (defaults.dialogtitle != '' 
@@ -119,7 +119,7 @@
                     if (defaults.method == 'link'){
                         normal_dialog();
                     }
-                    $('#'+defaults.dialogid).dialog('open');
+                    jQuery('#'+defaults.dialogid).dialog('open');
                     return false;
                 })
             }
