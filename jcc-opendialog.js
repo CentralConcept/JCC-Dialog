@@ -3,7 +3,7 @@
  * Description: dynamic diloag. extends jqueryui dialog()
  * Author: Martin von Loh 
  * Version: 1.2.1
- * License: GPLv3
+ * Dual MIT/BSD license
  */
 
 ;(function ( $, window, document, undefined ) {
